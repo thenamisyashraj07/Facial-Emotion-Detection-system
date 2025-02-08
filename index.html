@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1e1e1e;
+            color: white;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 32px;
+        }
+        #video-container {
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            width: 60%;
+        }
+        #video-feed {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        #start {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #stop {
+            background-color: #f44336;
+            color: white;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Real-Time Emotion Detection</h1>
+    <div id="video-container">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Webcam Stream">
+    </div>
+    
+    <div class="button-container">
+        <button id="start" onclick="startCamera()">Open Camera</button>
+        <button id="stop" onclick="stopCamera()">Close Camera</button>
+    </div>
+
+    <script>
+        function startCamera() {
+            fetch("/start_camera").then(response => console.log("Camera Started"));
+        }
+
+        function stopCamera() {
+            fetch("/stop_camera").then(response => console.log("Camera Stopped"));
+        }
+    </script>
+</body>
+</html>
